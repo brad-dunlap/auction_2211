@@ -1,4 +1,8 @@
+require 'pry'
+require 'rspec'
 require './lib/auction'
+require './lib/item'
+require './lib/attendee'
 
 RSpec.describe Auction do
 	let(:auction){ Auction.new }
@@ -11,7 +15,7 @@ RSpec.describe Auction do
 		end
 
 		it 'has attributes' do
-			expect(auction.items).to eq(nil)
+			expect(auction.items).to eq([])
 		end
 	end
 
