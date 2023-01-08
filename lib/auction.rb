@@ -42,6 +42,4 @@ class Auction
 		end
 		bidders.uniq
 	end
-
-	
 end

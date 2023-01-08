@@ -110,7 +110,24 @@ RSpec.describe Auction do
 		end
 
 		it 'can return #bidder_info' do
+			auction.add_item(item1)
+			auction.add_item(item2)
+			auction.add_item(item3)
+			auction.add_item(item4)
+			auction.add_item(item5)
+			item1.add_bid(attendee2, 20)
+			item1.add_bid(attendee1, 22)
+			item4.add_bid(attendee3, 50)
+			item3.add_bid(attendee2, 15)
 			expect(auction.bidder_info).to be_a(Hash)
+
+			expected_hash = {
+				attendee1 => { :budget => 50, :items => [item1] },
+				attendee2 => { :budget => 75, :items => [item1, item3] },
+				attendee3 => { :budget => 100, :items => [item4] }
+			}
+
+			expect(auction.bidder_info).to eq(expected_hash)
 		end
 	end
 end
