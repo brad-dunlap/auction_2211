@@ -32,4 +32,16 @@ class Auction
 		end
 		revenue
 	end
+
+	def bidders
+		bidders = []
+		items.each do |item|
+			item.bids.each do |attendee, bid|
+				bidders << attendee.name				
+			end
+		end
+		bidders.uniq
+	end
+
+	
 end

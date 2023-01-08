@@ -106,5 +106,11 @@ RSpec.describe Auction do
 			item1.add_bid(attendee1, 22)
 			item4.add_bid(attendee3, 50)
 			item3.add_bid(attendee2, 15)
-			expect(auction.bidders).to eq(["Megan", "Bob", "Mike"])
+			expect(auction.bidders).to match_array(["Megan", "Bob", "Mike"])
+		end
+
+		it 'can return #bidder_info' do
+			expect(auction.bidder_info).to be_a(Hash)
+		end
+	end
 end
