@@ -26,6 +26,10 @@ class Auction
 	end
 
 	def potential_revenue
-		
+		revenue = 0
+		items.each do |item|			
+			revenue += item.current_high_bid.to_i
+		end
+		revenue
 	end
 end
