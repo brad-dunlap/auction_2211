@@ -42,4 +42,27 @@ class Auction
 		end
 		bidders.uniq
 	end
+
+	def bidder_info
+		bidders = Hash.new(0)
+		bids = []
+		items.each do |item|
+			if !item.bids.empty?
+				bids << item.bids.keys
+			end
+		end
+		flattened = bids.flatten
+		flattened.each do |attendee|
+			bidders[attendee] = {:budget => (attendee.budget), :items => []}
+		end
+		bidders
+		items.each do |item|
+			bidders.each do |attendee, info|
+				if item.bids.keys.include?(attendee)
+					info[:items] << item
+				end
+			end
+		end
+		bidders
+	end
 end
