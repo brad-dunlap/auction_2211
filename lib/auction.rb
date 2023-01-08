@@ -24,4 +24,8 @@ class Auction
 		end
 		unpopular
 	end
+
+	def potential_revenue
+		
+	end
 end
