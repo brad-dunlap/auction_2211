@@ -51,11 +51,9 @@ class Auction
 				bids << item.bids.keys
 			end
 		end
-		flattened = bids.flatten
-		flattened.each do |attendee|
+		bids.flatten.each do |attendee|
 			bidders[attendee] = {:budget => (attendee.budget), :items => []}
-		end
-		bidders
+		end		
 		items.each do |item|
 			bidders.each do |attendee, info|
 				if item.bids.keys.include?(attendee)
@@ -64,5 +62,10 @@ class Auction
 			end
 		end
 		bidders
+	end
+
+	def date
+		d = Date.today
+		d.strftime("%m/%d/%Y")
 	end
 end

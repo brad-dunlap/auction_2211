@@ -3,6 +3,7 @@ require 'rspec'
 require './lib/auction'
 require './lib/item'
 require './lib/attendee'
+require 'date'
 
 RSpec.describe Auction do
 	let(:auction) { Auction.new }
@@ -128,6 +129,13 @@ RSpec.describe Auction do
 			}
 
 			expect(auction.bidder_info).to eq(expected_hash)
+		end
+	end
+
+	describe "Date" do
+		it 'can determine the date' do
+			allow(auction).to receive(:date) {"01/07/2023"}
+			expect(auction.date).to eq("01/07/2023")
 		end
 	end
 end
