@@ -82,7 +82,7 @@ RSpec.describe Auction do
 
 	describe 'revenue' do
 		it 'can determine #potential_revenue' do
-		auction.add_item(item1)
+			auction.add_item(item1)
 			auction.add_item(item2)
 			auction.add_item(item3)
 			auction.add_item(item4)
@@ -94,4 +94,17 @@ RSpec.describe Auction do
 			expect(auction.potential_revenue).to eq(87)
 		end
 	end
+
+	describe 'bidders' do
+		it 'can return an array of attendees that have place a bid' do
+			auction.add_item(item1)
+			auction.add_item(item2)
+			auction.add_item(item3)
+			auction.add_item(item4)
+			auction.add_item(item5)
+			item1.add_bid(attendee2, 20)
+			item1.add_bid(attendee1, 22)
+			item4.add_bid(attendee3, 50)
+			item3.add_bid(attendee2, 15)
+			expect(auction.bidders).to eq(["Megan", "Bob", "Mike"])
 end
