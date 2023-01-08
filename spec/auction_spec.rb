@@ -52,6 +52,7 @@ RSpec.describe Auction do
 			expect(item1.bids).to eq({})
 			item1.add_bid(attendee2, 20)
 			item1.add_bid(attendee1, 22)
+			expect(item1.bids).to eq({attendee2 => 20, attendee1 => 22})
 		end
 
 		it 'can determine current_high_bid' do
@@ -127,7 +128,6 @@ RSpec.describe Auction do
 				attendee2 => { :budget => 75, :items => [item1, item3] },
 				attendee3 => { :budget => 100, :items => [item4] }
 			}
-
 			expect(auction.bidder_info).to eq(expected_hash)
 		end
 	end
@@ -136,6 +136,16 @@ RSpec.describe Auction do
 		it 'can determine the date' do
 			allow(auction).to receive(:date) {"01/07/2023"}
 			expect(auction.date).to eq("01/07/2023")
+		end
+	end
+
+	describe "Closing bids" do
+		it "can prevent new bids from being added once closed" do
+			auction.add_item(item1)
+			item1.add_bid(attendee2, 20)
+			item1.close_bidding
+			item1.add_bid(attendee1, 22)
+			expect(item1.bids).to eq({attendee2 => 20})
 		end
 	end
 end

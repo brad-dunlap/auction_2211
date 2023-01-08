@@ -13,4 +13,14 @@ RSpec.describe Item do
 			expect(item1.name).to eq("Chalkware Piggy Bank")
 		end
 	end
+
+	describe '#close_bidding' do
+		it 'can prevent new bids from being added' do
+			expect(item1.closed?).to be false
+			
+			item1.close_bidding
+			expect(item1.closed?).to be true
+
+		end
+	end
 end
