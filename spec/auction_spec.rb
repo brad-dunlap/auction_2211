@@ -134,8 +134,8 @@ RSpec.describe Auction do
 
 	describe "Date" do
 		it 'can determine the date' do
-			allow(auction).to receive(:date) {"01/07/2023"}
-			expect(auction.date).to eq("01/07/2023")
+			allow(Date).to receive(:today) {Date.new(2023, 1, 7)}
+			expect(auction.date).to eq("07/01/2023")
 		end
 	end
 

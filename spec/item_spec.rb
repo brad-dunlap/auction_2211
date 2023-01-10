@@ -20,7 +20,6 @@ RSpec.describe Item do
 			
 			item1.close_bidding
 			expect(item1.closed?).to be true
-
 		end
 	end
 end
